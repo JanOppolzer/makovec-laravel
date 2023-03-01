@@ -11,7 +11,7 @@ use Illuminate\View\View;
 
 class ShibbolethController extends Controller
 {
-    public function create(): RedirectResponse|View|string
+    public function create(): RedirectResponse|string
     {
         if (is_null(request()->server('Shib-Handler'))) {
             return 'login';
@@ -25,7 +25,7 @@ class ShibbolethController extends Controller
         );
     }
 
-    public function store(): RedirectResponse
+    public function store(): RedirectResponse|View
     {
         $mail = explode(';', request()->server('mail'));
 
