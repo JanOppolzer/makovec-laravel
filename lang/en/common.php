@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'activate_user_body' => 'Would you like to activate user :name?',
+    'activate_user' => 'Activate user?',
     'activate' => 'Activate',
     'active' => 'Active',
     'add' => 'Add',
@@ -18,6 +20,8 @@ return [
     'category' => 'Category',
     'confirm' => 'Confirm',
     'dashboard' => 'Dashboard',
+    'deactivate_user_body' => 'Would you like to deactivate user :name?',
+    'deactivate_user' => 'Deactivate user?',
     'deactivate' => 'Deactivate',
     'delete' => 'Delete',
     'description' => 'Description',

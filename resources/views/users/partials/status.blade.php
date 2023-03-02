@@ -11,15 +11,15 @@
     <x-modal>
         <x-slot:title>
             @if ($user->active)
-                {{ __('common.deactivate_model', ['name' => $user->name]) }}
+                {{ __('common.deactivate_user') }}
             @else
-                {{ __('common.activate_model', ['name' => $user->name]) }}
+                {{ __('common.activate_user') }}
             @endif
         </x-slot:title>
         @if ($user->active)
-            {{ __('common.deactivate_model_body', ['name' => $user->name, 'type' => 'user']) }}
+            {{ __('common.deactivate_user_body', ['name' => $user->name]) }}
         @else
-            {{ __('common.activate_model_body', ['name' => $user->name, 'type' => 'user']) }}
+            {{ __('common.activate_user_body', ['name' => $user->name]) }}
         @endif
     </x-modal>
 </form>

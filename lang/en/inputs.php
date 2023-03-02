@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'loading_please_wait_devices' => 'Loading devices, please wait...',
     'loading_please_wait_categories' => 'Loading categories, please wait...',
+    'loading_please_wait_devices' => 'Loading devices, please wait...',
     'loading_please_wait_users' => 'Loading users, please wait...',
     'placeholder_description' => 'Enter description',
     'placeholder_email' => 'Enter email address',
