@@ -242,7 +242,7 @@ class DeviceControllerTest extends TestCase
             ->followingRedirects()
             ->post(route('devices.store', $device))
             ->assertOk()
-            ->assertSeeText(__('devices.added', ['name' => $device['mac'], 'model' => $category->type]));
+            ->assertSeeText(__('devices.added', ['name' => $device['mac'], 'category' => $category->description]));
         $this->assertCount(1, Device::all());
     }
 
@@ -361,7 +361,7 @@ class DeviceControllerTest extends TestCase
             ->followingRedirects()
             ->post(route('devices.store', $device))
             ->assertOk()
-            ->assertSeeText(__('devices.added', ['name' => $device['mac'], 'model' => $category->type]));
+            ->assertSeeText(__('devices.added', ['name' => $device['mac'], 'category' => $category->description]));
         $this->assertCount(1, Device::all());
     }
 

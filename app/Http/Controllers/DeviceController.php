@@ -62,7 +62,7 @@ class DeviceController extends Controller
         ));
 
         return to_route('devices.show', $device)
-            ->with('status', __('devices.added', ['name' => $device->mac, 'model' => $category->type]));
+            ->with('status', __('devices.added', ['name' => $device->mac, 'category' => $category->description]));
     }
 
     /**

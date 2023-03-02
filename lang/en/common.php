@@ -40,6 +40,7 @@ return [
     'my_profile' => 'My Profile',
     'name' => 'Name',
     'no_manager' => 'Nobody manages this category.',
+    'optional_attributes' => 'Optional attributes',
     'reset' => 'Reset',
     'roles' => 'Roles',
     'show' => 'Show',
