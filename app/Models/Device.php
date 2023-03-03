@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Device extends Model
 {
@@ -53,6 +55,21 @@ class Device extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function history(): HasMany
+    {
+        return $this->hasMany(History::class);
+    }
+
+    public function oldestHistory(): HasOne
+    {
+        return $this->hasOne(History::class)->oldestOfMany();
+    }
+
+    public function latestHistory(): HasOne
+    {
+        return $this->hasOne(History::class)->latestOfMany();
     }
 
     public function scopeSearch(Builder $query, ?string $search = null): void

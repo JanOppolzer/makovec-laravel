@@ -52,7 +52,7 @@
                 <x-label for="valid_from">{{ __('common.valid_from') }}</x-label>
             </x-slot:dt>
 
-            <x-input name="valid_from" old="{{ $device->valid_from }}" :required="false" />
+            <x-input name="valid_from" type="date" old="{{ $device->valid_from }}" :required="false" />
             <x-error-message name="valid_from" />
         </x-dl-div>
 
@@ -61,7 +61,7 @@
                 <x-label for="valid_to">{{ __('common.valid_to') }}</x-label>
             </x-slot:dt>
 
-            <x-input name="valid_to" old="{{ $device->valid_to }}" :required="false" />
+            <x-input name="valid_to" type="date" old="{{ $device->valid_to }}" :required="false" />
             <x-error-message name="valid_to" />
         </x-dl-div>
 

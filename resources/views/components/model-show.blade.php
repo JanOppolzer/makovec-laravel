@@ -9,4 +9,9 @@
             {{ $slot }}
         </dl>
     </div>
+    @if ($footer ?? null)
+        <div class="sm:px-6 odd:bg-gray-100 odd:dark:bg-gray-900 md:flex px-4 py-5 text-sm border-t">
+            {{ $footer }}
+        </div>
+    @endif
 </div>
