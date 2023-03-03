@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('deleted', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('category_id');
-            $table->string('mac', 17);
-            $table->string('name', 64);
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('device_id')->nullable();
+            $table->enum('action', ['create', 'update', 'delete']);
+            $table->string('mac', 17)->nullable();
+            $table->string('name', 64)->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('deleted');
+        Schema::dropIfExists('logs');
     }
 };

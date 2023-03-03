@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Events\DeviceCreated;
+use App\Events\DeviceDeleted;
+use App\Events\DeviceUpdated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,6 +31,12 @@ class Device extends Model
         'enabled' => 'boolean',
         'valid_from' => 'date',
         'valid_to' => 'date',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => DeviceCreated::class,
+        'updated' => DeviceUpdated::class,
+        'deleted' => DeviceDeleted::class,
     ];
 
     protected function mac(): Attribute
@@ -57,19 +66,19 @@ class Device extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function history(): HasMany
+    public function log(): HasMany
     {
-        return $this->hasMany(History::class);
+        return $this->hasMany(Log::class);
     }
 
-    public function oldestHistory(): HasOne
+    public function logCreated(): HasOne
     {
-        return $this->hasOne(History::class)->oldestOfMany();
+        return $this->hasOne(Log::class)->whereAction('create')->oldestOfMany();
     }
 
-    public function latestHistory(): HasOne
+    public function logUpdated(): HasOne
     {
-        return $this->hasOne(History::class)->latestOfMany();
+        return $this->hasOne(Log::class)->whereAction('update')->latestOfMany();
     }
 
     public function scopeSearch(Builder $query, ?string $search = null): void

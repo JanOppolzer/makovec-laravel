@@ -47,36 +47,24 @@
             {{ $device->valid_to ?? '--' }}
         </x-dl-div>
 
-        <x-slot:footer>
-            <div class="md:grow md:text-left">{{ __('common.created_by') }}
-                @if ($device->oldestHistory)
-                    <x-a href="{{ route('users.show', $device->oldestHistory->user) }}">
-                        {{ $device->oldestHistory->user->name }}</x-a>
-                @else
-                    {{ __('common.unknown') }}
-                @endif
-                {{ __('common.at') }}
-                @if ($device->oldestHistory)
-                    {{ $device->oldestHistory->created_at }} ({{ $device->created_at->diffForHumans() }}).
-                @else
-                    {{ $device->created_at }}
-                @endif
-            </div>
-            <div class="md:grow md:text-right">{{ __('common.updated_by') }}
-                @if ($device->latestHistory)
-                    <x-a href="{{ route('users.show', $device->latestHistory->user) }}">
-                        {{ $device->latestHistory->user->name }}</x-a>
-                @else
-                    {{ __('common.unknown') }}
-                @endif
-                {{ __('common.at') }}
-                @if ($device->latestHistory)
-                    {{ $device->latestHistory->updated_at }} ({{ $device->updated_at->diffForHumans() }}).
-                @else
-                    {{ $device->updated_at }}
-                @endif
-            </div>
-        </x-slot:footer>
+        @if ($device->log->count())
+            <x-slot:footer>
+                <div class="md:grow md:text-left">
+                    @if ($device->logCreated)
+                        {{ __('common.created_by') }} {{ $device->logCreated->user?->name ?? 'unknown' }}
+                        {{ __('common.at') }}
+                        {{ $device->logCreated->created_at }} ({{ $device->logCreated->created_at->diffForHumans() }}).
+                    @endif
+                </div>
+                <div class="md:grow md:text-right">
+                    @if ($device->logUpdated)
+                        {{ __('common.updated_by') }} {{ $device->logUpdated?->user?->name ?? 'unknown' }}
+                        {{ __('common.at') }} {{ $device->logUpdated->updated_at }}
+                        ({{ $device->logUpdated->updated_at->diffForHumans() }}).
+                    @endif
+                </div>
+            </x-slot:footer>
+        @endif
 
     </x-model-show>
 

@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDeviceRequest;
 use App\Http\Requests\UpdateDeviceRequest;
 use App\Models\Category;
-use App\Models\Deleted;
 use App\Models\Device;
-use App\Models\History;
 use App\Models\User;
 use App\Services\MacService;
 use Illuminate\Http\RedirectResponse;
@@ -63,11 +61,6 @@ class DeviceController extends Controller
                 ?? $category->type.'_'.$macService->clean($request->validated()['mac'])],
         ));
 
-        History::create([
-            'device_id' => $device->id,
-            'user_id' => Auth::id(),
-        ]);
-
         return to_route('devices.show', $device)
             ->with('status', __('devices.added', ['name' => $device->mac, 'category' => $category->description]));
     }
@@ -79,7 +72,7 @@ class DeviceController extends Controller
     {
         $this->authorize('view', $device);
 
-        $device->load('oldestHistory', 'latestHistory');
+        $device->load('logCreated', 'logUpdated');
 
         return view('devices.show', compact('device'));
     }
@@ -104,13 +97,8 @@ class DeviceController extends Controller
         $device->update($request->validated());
 
         if ($device->wasChanged()) {
-            History::create([
-                'device_id' => $device->id,
-                'user_id' => Auth::id(),
-            ]);
-
             return to_route('devices.show', $device)
-                ->with('status', __('devices.updated', ['name' => $device->mac, 'model' => $device->category->type]));
+                ->with('status', __('devices.updated', ['name' => $device->mac]));
         }
 
         return to_route('devices.show', $device);
@@ -122,11 +110,6 @@ class DeviceController extends Controller
     public function destroy(Device $device): RedirectResponse
     {
         $this->authorize('delete', $device);
-
-        Deleted::create(array_merge(
-            ['user_id' => Auth::id()],
-            $device->only('category_id', 'mac', 'name', 'description'),
-        ));
 
         $name = $device->mac;
         $device->delete();
