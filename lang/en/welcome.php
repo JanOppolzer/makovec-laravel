@@ -10,6 +10,5 @@ return [
     'pii-link' => 'https://www.cesnet.cz/personal-data-processing/?lang=en',
     'pii-text' => 'Personal data processing',
     'requested_attributes' => 'In order to log in, the application requires your Identity Provider to release the following attributes:',
-    'switch_language' => 'Přepnout do češtiny',
     'uniqueid' => 'eduPersonUniqueId',
 ];

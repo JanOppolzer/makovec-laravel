@@ -35,16 +35,6 @@
 
             <header>
                 <h1 class="sm:text-5xl pb-4 text-4xl font-bold tracking-wider">{{ config('app.name') }}</h1>
-                <p class="pb-4 font-bold text-right text-blue-500">[
-                    @if (App::currentLocale() == 'cs')
-                        <a href="/language/en">
-                        @else
-                            <a href="/language/cs">
-                    @endif
-
-                    {{ __('welcome.switch_language') }}</a>
-                    ]
-                </p>
                 <p class="sm:text-lg leading-relaxed">{!! __('welcome.introduction') !!}</p>
                 <div
                     class="bg-gradient-to-r from-gray-100 dark:from-gray-800 to-gray-100 dark:to-gray-800 via-gray-800 dark:via-gray-100 w-full h-px my-8">
