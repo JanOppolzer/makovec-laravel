@@ -51,14 +51,30 @@
             <x-slot:footer>
                 <div class="md:grow md:text-left">
                     @if ($device->logCreated)
-                        {{ __('common.created_by') }} {{ $device->logCreated->user?->name ?? 'unknown' }}
+                        {{ __('common.created_by') }}
+                        @if ($device->logCreated->user)
+                            <x-a>
+                                <x-slot:href>mailto:{{ $device->logCreated->user->email }}</x-slot:href>
+                                {{ $device->logCreated->user->name }}
+                            </x-a>
+                        @else
+                            {{ __('common.unknown') }}
+                        @endif
                         {{ __('common.at') }}
                         {{ $device->logCreated->created_at }} ({{ $device->logCreated->created_at->diffForHumans() }}).
                     @endif
                 </div>
                 <div class="md:grow md:text-right">
                     @if ($device->logUpdated)
-                        {{ __('common.updated_by') }} {{ $device->logUpdated?->user?->name ?? 'unknown' }}
+                        {{ __('common.updated_by') }}
+                        @if ($device->logUpdated->user)
+                            <x-a>
+                                <x-slot:href>mailto:{{ $device->logUpdated->user->email }}</x-slot:href>
+                                {{ $device->logUpdated->user->name }}
+                            </x-a>
+                        @else
+                            {{ __('common.unknown') }}
+                        @endif
                         {{ __('common.at') }} {{ $device->logUpdated->updated_at }}
                         ({{ $device->logUpdated->updated_at->diffForHumans() }}).
                     @endif
