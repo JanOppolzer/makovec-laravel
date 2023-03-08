@@ -35,6 +35,7 @@ return [
     'enabled' => 'Enabled',
     'full_name' => 'Full name',
     'inactive' => 'Inactive',
+    'last_login_at' => 'Last login at',
     'login' => 'Login',
     'logout' => 'Logout',
     'mac' => 'MAC address',

@@ -54,6 +54,12 @@
             @endunless
         @endcan
 
+        @if ($user->login_at)
+            <x-slot:footer>
+                {{ __('common.last_login_at') }} {{ $user->login_at }} ({{ $user->login_at->diffForHumans() }}).
+            </x-slot:footer>
+        @endif
+
     </x-model-show>
 
     <div>
