@@ -29,7 +29,8 @@
                         @can('viewAny', App\Models\Device::class)
                             <li>
                                 <x-button-header href="{{ route('devices.index') }}"
-                                    active="{{ Route::currentRouteName() === 'devices.index' }}">{{ __('common.devices') }}
+                                    active="{{ Str::of(Route::currentRouteName())->startsWith('devices.') }}">
+                                    {{ __('common.devices') }}
                                 </x-button-header>
                             </li>
                         @endcan
@@ -41,7 +42,7 @@
                         @can('do-everything')
                             <li>
                                 <x-button-header href="{{ route('categories.index') }}"
-                                    active="{{ Route::currentRouteName() === 'categories.index' }}">
+                                    active="{{ Str::of(Route::currentRouteName())->startsWith('categories.') }}">
                                     {{ __('common.categories') }}
                                 </x-button-header>
                             </li>
