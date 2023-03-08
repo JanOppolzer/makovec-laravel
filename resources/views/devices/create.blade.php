@@ -20,7 +20,7 @@
                     @else
                         <option value="">{{ __('devices.choose_category') }}</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" @if (old('category_id') === $category->id) selected @endif>
+                            <option value="{{ $category->id }}" @if (old('category_id') == $category->id) selected @endif>
                                 {{ ucfirst($category->type) }}</option>
                         @endforeach
                     @endif

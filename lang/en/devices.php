@@ -8,8 +8,9 @@ return [
     'device_profile' => "Device's profile",
     'none_found' => 'No device found.',
     'profile' => 'Profile',
+    'reserved_mac_address' => 'Reserved MAC address.',
     'show' => ':name :model',
-    'updated' => ':name MAC address has been updated successfully.',
     'uniqueness_required' => 'The MAC address must be unique.',
     'unknown_category' => 'Unknown category.',
+    'updated' => ':name MAC address has been updated successfully.',
 ];
