@@ -14,7 +14,7 @@ return [
     'user_status_changed_subject' => ":name's Status Changed",
     'your_account_created_body' => 'Your account has been created successfully.',
     'your_account_created_header' => 'Your Account Created',
-    'your_account_created_subject' => 'Your account has been created successfully.',
+    'your_account_created_subject' => 'Your Account Created',
     'your_role_changed_body_granted' => 'You have been granted administrator rights successfully.',
     'your_role_changed_body_revoked' => 'You have been revoked administrator rights successfully.',
     'your_role_changed_subject' => 'Your Role Changed',
